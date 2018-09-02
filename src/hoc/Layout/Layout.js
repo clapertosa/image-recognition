@@ -39,6 +39,7 @@ class Layout extends Component {
           showBackdrop={this.state.showSideDrawer}
           backdropClicked={this.sideDrawerCloseHandler}
         />
+        <main className={styles["main-content"]}>{this.props.children}</main>
       </React.Fragment>
     );
   }

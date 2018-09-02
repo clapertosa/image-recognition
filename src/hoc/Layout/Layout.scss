@@ -1,6 +1,5 @@
 .header {
   width: 100%;
-  position: absolute;
   background: black;
   color: white;
   height: 3.125rem;
@@ -10,4 +9,8 @@
   top: 0;
   left: 0;
   z-index: 90;
+}
+
+.main-content {
+  position: relative;
 }
