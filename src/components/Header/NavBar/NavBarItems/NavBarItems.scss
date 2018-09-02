@@ -1,0 +1,9 @@
+nav ul {
+  display: none;
+}
+
+@media (min-width: 40rem) {
+  nav ul {
+    display: block;
+  }
+}

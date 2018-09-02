@@ -1,0 +1,18 @@
+.navbar-item {
+  display: inline-block;
+  list-style: none;
+}
+
+.navbar-item a {
+  display: block;
+  line-height: 3.125rem; // For appear like a tile
+  padding: 0 20px; // For appear like a tile
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-item:active,
+.navbar-item:hover {
+  color: #ffffff;
+  background: #2196f3;
+}

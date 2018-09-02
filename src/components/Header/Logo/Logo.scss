@@ -1,0 +1,11 @@
+@import "../../../_variables.scss";
+
+.logo {
+  margin-left: $headerContentMargin;
+  width: 3.125rem;
+}
+
+.logo img {
+  max-width: 3.125rem;
+  max-height: 3.125rem;
+}

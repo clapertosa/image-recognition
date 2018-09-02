@@ -1,0 +1,36 @@
+.sidedrawer {
+  position: fixed;
+  width: 280px;
+  max-width: 70%;
+  height: 100%;
+  top: 3.125rem;
+  left: 0;
+  background: black;
+  transition: transform 0.2s ease-out;
+
+  @media (min-width: 40rem) {
+    display: none;
+  }
+}
+
+.sidedrawer ul {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.sidedrawer li {
+  display: block;
+}
+
+.sidedrawer li a {
+  padding: 0;
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.close {
+  transform: translateX(-100%);
+}
