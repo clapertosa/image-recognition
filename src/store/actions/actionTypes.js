@@ -1,0 +1,3 @@
+export const SIGNUP_INIT = "SIGNUP_INIT";
+export const SIGNUP_COMPLETED = "SIGNUP_COMPLETED";
+export const SIGNUP_FAILED = "SIGNUP_FAILED";
