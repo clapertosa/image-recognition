@@ -11,3 +11,5 @@ export {
   default as DrawerToggle
 } from "./Header/SideDrawer/DrawerToggle/DrawerToggle";
 export { default as Backdrop } from "./UI/Backdrop/Backdrop";
+export { default as LoginForm } from "./Form/LoginForm/LoginForm";
+export { default as SignupForm } from "./Form/SignupForm/SignupForm";
