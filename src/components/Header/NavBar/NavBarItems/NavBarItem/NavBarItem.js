@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styles from "./NavBarItem.scss";
 
 const NavBarItem = props => {
@@ -7,7 +8,13 @@ const NavBarItem = props => {
     : null;
   return (
     <li className={styles["navbar-item"]} style={backgroundColor}>
-      <a href={props.url ? props.url : "#"}>{props.children}</a>
+      <NavLink
+        exact={props.exact}
+        activeClassName={styles.active}
+        to={props.url ? props.url : "#"}
+      >
+        {props.children}
+      </NavLink>
     </li>
   );
 };

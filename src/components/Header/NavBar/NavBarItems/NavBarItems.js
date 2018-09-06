@@ -3,12 +3,16 @@ import { NavBarItem } from "../../../../components";
 
 import styles from "./NavBarItems.scss";
 
-const NavBarItems = () => {
+const NavBarItems = props => {
   return (
     <ul className={styles["navbar-items"]}>
-      <NavBarItem>Home</NavBarItem>
-      <NavBarItem>Login</NavBarItem>
-      <NavBarItem backgroundColor="#007209">Signup</NavBarItem>
+      <NavBarItem exact url="/">
+        Home
+      </NavBarItem>
+      <NavBarItem url="/login">Login</NavBarItem>
+      <NavBarItem url="/signup" backgroundColor="#007209">
+        Signup
+      </NavBarItem>
     </ul>
   );
 };
