@@ -74,3 +74,6 @@ typings/
 
 # dist
 dist
+
+#config
+config/keys.js
