@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
+import axios from "../../axiosInstance";
 
 export const signupInit = () => {
   return {
@@ -7,16 +7,17 @@ export const signupInit = () => {
   };
 };
 
+export const signupReset = () => {
+  return {
+    type: actionTypes.SIGNUP_RESET
+  };
+};
+
 export const signup = user => {
   return dispatch => {
     dispatch(signupInit());
     axios
-      .post(
-        `http${process.env.NODE_ENV === "production" ? "s" : ""}://${
-          window.location.host
-        }/api/signup`,
-        user
-      )
+      .post("/api/signup", user)
       .then(response => dispatch(signupCompleted(response.data)))
       .catch(error => dispatch(signupFailed(error.response.data)));
   };
