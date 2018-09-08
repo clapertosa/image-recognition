@@ -4,8 +4,8 @@ import { NavBarItem } from "../../../../components";
 import styles from "./NavBarItems.scss";
 
 const NavBarItems = props => {
-  return (
-    <ul className={styles["navbar-items"]}>
+  let navBarLinks = (
+    <ul>
       <NavBarItem exact url="/">
         Home
       </NavBarItem>
@@ -15,6 +15,22 @@ const NavBarItems = props => {
       </NavBarItem>
     </ul>
   );
+
+  if (props.isAuthenticated) {
+    navBarLinks = (
+      <ul>
+        <NavBarItem exact url="/">
+          Home
+        </NavBarItem>
+        <NavBarItem url="/user">User</NavBarItem>
+        <NavBarItem url="/logout" backgroundColor="#007209">
+          Logout
+        </NavBarItem>
+      </ul>
+    );
+  }
+
+  return navBarLinks;
 };
 
 export default NavBarItems;

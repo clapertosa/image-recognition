@@ -7,11 +7,8 @@ const NavBar = props => {
   return (
     <React.Fragment>
       <nav>
-        <NavBarItems />
+        <NavBarItems isAuthenticated={props.isAuthenticated} />
       </nav>
-      {/*<div className="menu-toggle">
-        <i className="fa fa-bars" aria-hidden="true" />
-  </div>*/}
     </React.Fragment>
   );
 };

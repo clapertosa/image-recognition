@@ -6,6 +6,7 @@ import {
   SideDrawer,
   Backdrop
 } from "../../components";
+import { connect } from "react-redux";
 
 import styles from "./Layout.scss";
 
@@ -29,7 +30,7 @@ class Layout extends Component {
       <React.Fragment>
         <header className={styles.header}>
           <Logo />
-          <NavBar />
+          <NavBar isAuthenticated={this.props.isAuthenticated} />
           <DrawerToggle
             drawerToggleClicked={this.showSideDrawerToggleHandler}
           />
@@ -45,4 +46,10 @@ class Layout extends Component {
   }
 }
 
-export default Layout;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  };
+};
+
+export default connect(mapStateToProps)(Layout);
