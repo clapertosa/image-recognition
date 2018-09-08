@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { Typography, TextField, Button } from "@material-ui/core";
-import * as actions from "../../../store/actions";
+import successImage from "../../../assets/images/success.svg";
+import * as actions from "../../../store/actions/signup";
 
 import styles from "./SignupForm.scss";
 
@@ -12,6 +14,10 @@ class SignupForm extends Component {
     passwordError: "",
     password2Error: ""
   };
+
+  componentDidMount() {
+    this.props.resetFields();
+  }
 
   onChangeHandler = e => {
     const userState = { ...this.state.user };
@@ -78,7 +84,7 @@ class SignupForm extends Component {
   };
 
   render() {
-    return (
+    const signupForm = (
       <div className={styles["form-container"]}>
         <form onSubmit={e => this.onSubmitHandler(e)}>
           <Typography color="textPrimary" variant="display1">
@@ -138,22 +144,40 @@ class SignupForm extends Component {
         </form>
       </div>
     );
+    const signupSuccess = (
+      <div className={styles["success-container"]}>
+        <div className={styles["success-message-container"]}>
+          <h1>
+            You've been registered. An email has been sent to{" "}
+            {this.state.user.email}
+          </h1>
+        </div>
+        <div className={styles["image-container"]}>
+          <img src={successImage} />
+        </div>
+      </div>
+    );
+    return this.props.signupSuccess ? signupSuccess : signupForm;
   }
 }
 
 const mapStateToProps = state => {
   return {
-    signupError: state.signup.error
+    signupError: state.signup.error,
+    signupSuccess: state.signup.success
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    signup: user => dispatch(actions.signup(user))
+    signup: user => dispatch(actions.signup(user)),
+    resetFields: () => dispatch(actions.signupReset())
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignupForm);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SignupForm)
+);

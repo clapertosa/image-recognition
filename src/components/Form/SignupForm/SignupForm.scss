@@ -12,3 +12,45 @@
   margin-right: 10px !important;
   margin-left: 10px !important;
 }
+
+.success-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 1rem;
+
+  text-align: center;
+}
+
+.success-message-container {
+  width: 100%;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  animation-name: message;
+  animation-duration: 2s;
+}
+
+.image-container {
+  min-width: 250px;
+  min-height: 250px;
+  animation-name: image;
+  animation-duration: 2s;
+}
+
+@keyframes message {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes image {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
