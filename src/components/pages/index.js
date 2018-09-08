@@ -11,3 +11,13 @@ const asyncSignup = asyncComponent(() => {
   return import("./Signup/Signup");
 });
 export { asyncSignup as Signup };
+
+const asyncUser = asyncComponent(() => {
+  return import("./User/User");
+});
+export { asyncUser as User };
+
+const asyncLogout = asyncComponent(() => {
+  return import("./Logout/Logout");
+});
+export { asyncLogout as Logout };
