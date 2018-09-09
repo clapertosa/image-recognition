@@ -3,8 +3,9 @@ exports.seed = function(knex, Promise) {
     .del()
     .then(function() {
       return knex("users").insert({
-        email: "asd@asd.com",
-        password: "asd"
+        email: "newuser@newuser.com",
+        password: "password",
+        created_at: knex.fn.now()
       });
     });
 };
