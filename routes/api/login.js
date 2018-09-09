@@ -4,8 +4,15 @@ const bcrypt = require("bcryptjs");
 const knex = require("../../db/knex");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const validateLogin = require("../../validations/login");
 
 router.post("/", (req, res) => {
+  const { isValid, errors } = validateLogin(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const email = req.body.email.trim();
   const password = req.body.password;
 
