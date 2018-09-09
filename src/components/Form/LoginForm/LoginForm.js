@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../../../store/actions/login";
+import { login } from "../../../store/actions/login";
 import { Typography, TextField, Button } from "@material-ui/core";
 
 import styles from "./LoginForm.scss";
@@ -90,7 +90,7 @@ class LoginForm extends Component {
             value={this.state.user.password}
           />
 
-          {this.props.loginError ? (
+          {typeof this.props.loginError === "string" ? (
             <span className={styles["error-message"]}>
               {this.props.loginError}
             </span>
@@ -120,7 +120,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: user => dispatch(actions.login(user))
+    login: user => dispatch(login(user))
   };
 };
 
