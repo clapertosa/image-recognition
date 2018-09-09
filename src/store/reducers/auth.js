@@ -3,7 +3,8 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   email: "",
   exp: undefined,
-  isAuthenticated: false
+  isAuthenticated: false,
+  activated: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +14,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         email: action.payload.email,
         exp: action.payload.exp,
-        isAuthenticated: true
+        isAuthenticated: true,
+        activated: action.payload.activated
       };
     case actionTypes.LOGOUT:
       return {

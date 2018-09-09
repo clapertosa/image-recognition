@@ -4,9 +4,12 @@ import jwtDecode from "jwt-decode";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import signupReducer from "./store/reducers/signup";
-import loginReducer from "./store/reducers/login";
-import authReducer from "./store/reducers/auth";
+import {
+  signupReducer,
+  validateReducer,
+  loginReducer,
+  authReducer
+} from "./store/reducers";
 import { setCurrentUser, logout } from "./store/actions/auth";
 import { BrowserRouter } from "react-router-dom";
 import "./index.scss";
@@ -19,6 +22,7 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
   signup: signupReducer,
+  validate: validateReducer,
   login: loginReducer,
   auth: authReducer
 });

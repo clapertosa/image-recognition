@@ -20,7 +20,9 @@ export const login = user => {
         dispatch(setCurrentUser(decodedUser));
         dispatch(loginCompleted(response.data));
       })
-      .catch(error => dispatch(loginFailed(error.response.data)));
+      .catch(error => {
+        dispatch(loginFailed(error.response.data));
+      });
   };
 };
 
