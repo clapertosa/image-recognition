@@ -76,4 +76,4 @@ typings/
 dist
 
 #config
-config/keys.js
+config/dev.js
