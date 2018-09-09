@@ -21,3 +21,8 @@ const asyncLogout = asyncComponent(() => {
   return import("./Logout/Logout");
 });
 export { asyncLogout as Logout };
+
+const asyncValidate = asyncComponent(() => {
+  return import("./Signup/Validate");
+});
+export { asyncValidate as Validate };

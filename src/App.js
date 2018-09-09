@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
-import { Home, Login, Signup, User, Logout } from "./components/pages/";
+import {
+  Home,
+  Login,
+  Signup,
+  Validate,
+  User,
+  Logout
+} from "./components/pages/";
 import Layout from "./hoc/Layout/Layout";
 
 class App extends Component {
@@ -18,6 +25,7 @@ class App extends Component {
             )
           }
         />
+        <Route path="/signup/validate" component={Validate} />
         <Route
           path="/signup"
           render={() =>
@@ -38,6 +46,7 @@ class App extends Component {
         <Switch>
           <Route path="/user" component={User} />
           <Route path="/logout" component={Logout} />
+          <Route path="/signup/validate" component={Validate} />
           <Route path="/" exact component={Home} />
           <Redirect to="/" />
         </Switch>
