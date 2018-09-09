@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const knex = require("../../db/knex");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
-const passport = require("passport");
 
 router.post("/", (req, res) => {
   const email = req.body.email.trim();
@@ -14,7 +13,7 @@ router.post("/", (req, res) => {
     .select("id", "email", "password")
     .where("email", email)
     .then(user => {
-      if (!user) {
+      if (!user[0]) {
         return res.status(401).json("Wrong email or password");
       } else {
         bcrypt
@@ -30,13 +29,13 @@ router.post("/", (req, res) => {
                 { expiresIn: "2h" },
                 (err, token) => {
                   if (err) {
-                    res.status(400).json(err);
+                    return res.status(400).json(err);
                   }
-                  res.json({ success: true, token: `Bearer ${token}` });
+                  return res.json({ success: true, token: `Bearer ${token}` });
                 }
               );
             } else {
-              res.status(400).json("Wrong email or password");
+              return res.status(400).json("Wrong email or password");
             }
           })
           .catch(error => res.status(400).json(error));
