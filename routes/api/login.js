@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
   const password = req.body.password;
 
   knex("users")
-    .select("id", "email", "password")
+    .select("id", "email", "password", "activated")
     .where("email", email)
     .then(user => {
       if (!user[0]) {
@@ -28,7 +28,11 @@ router.post("/", (req, res) => {
           .then(match => {
             if (match) {
               //USER MATCH
-              const payload = { id: user[0].id, email: user[0].email };
+              const payload = {
+                id: user[0].id,
+                email: user[0].email,
+                activated: user[0].activated
+              };
               //SIGN TOKEN
               jwt.sign(
                 payload,
@@ -42,7 +46,7 @@ router.post("/", (req, res) => {
                 }
               );
             } else {
-              return res.status(400).json("Wrong email or password");
+              return res.status(401).json("Wrong email or password");
             }
           })
           .catch(error => res.status(400).json(error));
