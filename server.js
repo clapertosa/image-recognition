@@ -14,6 +14,8 @@ const user = require("./routes/api/user");
 const PORT = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV === "production") {
+  app.disable("x-powered-by");
+  app.use(compression());
   app.use(morgan("combined"));
 }
 
