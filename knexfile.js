@@ -2,7 +2,7 @@ module.exports = {
   development: {
     client: "pg",
     connection: {
-      database: "image-recognizer",
+      database: "image-recognition",
       user: "postgres",
       password: "password"
     }
