@@ -39,7 +39,7 @@ router.post("/", (req, res) => {
           .insert({ email: email, password: password, created_at: new Date() })
           .then(() => {
             // NEW EMAIL TO SEND
-            const token = jwt.sign({ id: id, email: email }, keys.secret, {
+            const token = jwt.sign({ email: email }, keys.secret, {
               expiresIn: "2d"
             });
 
