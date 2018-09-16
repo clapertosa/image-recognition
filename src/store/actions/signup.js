@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "../../axiosInstance";
+import axios from "../../axiosClientInstance";
 
 export const signupInit = () => {
   return {
@@ -23,10 +23,10 @@ export const signup = user => {
   };
 };
 
-export const signupCompleted = response => {
+export const signupCompleted = data => {
   return {
     type: actionTypes.SIGNUP_COMPLETED,
-    payload: response
+    payload: data
   };
 };
 

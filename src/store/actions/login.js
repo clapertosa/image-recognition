@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "../../axiosInstance";
+import axios from "../../axiosClientInstance";
 import jwtDecode from "jwt-decode";
 import { setCurrentUser } from "./auth";
 
@@ -26,10 +26,10 @@ export const login = user => {
   };
 };
 
-export const loginCompleted = success => {
+export const loginCompleted = data => {
   return {
     type: actionTypes.LOGIN_COMPLETED,
-    payload: success
+    payload: data
   };
 };
 

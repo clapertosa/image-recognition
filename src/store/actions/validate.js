@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "../../axiosInstance";
+import axios from "../../axiosClientInstance";
 
 export const validateInit = () => {
   return {
@@ -18,10 +18,10 @@ export const validate = token => {
   };
 };
 
-export const validateCompleted = success => {
+export const validateCompleted = data => {
   return {
     type: actionTypes.VALIDATE_COMPLETED,
-    payload: success
+    payload: data
   };
 };
 
