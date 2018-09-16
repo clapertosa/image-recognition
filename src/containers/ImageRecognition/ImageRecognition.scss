@@ -1,0 +1,39 @@
+.container {
+  background-color: white;
+  box-shadow: 8px 10px 16px #000000;
+  border-radius: 10px;
+  padding: 10px 15px;
+  text-align: center;
+
+  button {
+    margin: 10px;
+  }
+
+  .select-image-button-container {
+    max-width: 100%;
+    button {
+      margin: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  input {
+    height: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  .container {
+    .title {
+      font-size: 2rem;
+      text-align: left;
+    }
+    .description {
+      font-size: 2rem;
+    }
+  }
+}
