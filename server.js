@@ -10,6 +10,7 @@ const passport = require("passport");
 const signup = require("./routes/api/signup");
 const login = require("./routes/api/login");
 const user = require("./routes/api/user");
+const recognition = require("./routes/api/recognition");
 
 const PORT = process.env.PORT || 3000;
 
@@ -37,5 +38,6 @@ require("./config/passport")(passport);
 app.use("/api/signup", signup);
 app.use("/api/login", login);
 app.use("/api/user", user);
+app.use("/api/recognition", recognition);
 
 app.listen(PORT, () => console.log("Server started"));
