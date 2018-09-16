@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "start:dev": "concurrently \"npm run webpack\" \" npm run server\"",
-    "build": "webpack --config webpack.config.production.js --progress --profile --colors",
+    "build": "rimraf dist && webpack --config webpack.config.production.js --progress --profile --colors",
+    "heroku-postbuild": "npm run build",
     "server": "nodemon ./server.js",
     "webpack": "webpack --config webpack.config.js -w --inline --progress --profile --colors",
     "test": "jest"
@@ -59,6 +60,7 @@
     "nodemon": "^1.18.4",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
+    "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
     "uglifyjs-webpack-plugin": "^2.0.0",
     "webpack": "^4.17.1",
