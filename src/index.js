@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import jwtDecode from "jwt-decode";
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import {
   signupReducer,
   validateReducer,
   loginReducer,
-  authReducer
+  authReducer,
+  recognitionReducer
 } from "./store/reducers";
 import { setCurrentUser, logout } from "./store/actions/auth";
 import { BrowserRouter } from "react-router-dom";
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   signup: signupReducer,
   validate: validateReducer,
   login: loginReducer,
-  auth: authReducer
+  auth: authReducer,
+  recognition: recognitionReducer
 });
 
 const store = createStore(
