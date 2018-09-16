@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Typography, TextField, Button } from "@material-ui/core";
@@ -160,6 +161,17 @@ class SignupForm extends Component {
     return this.props.signupSuccess ? signupSuccess : signupForm;
   }
 }
+
+SignupForm.propTypes = {
+  user: PropTypes.shape({
+    email: PropTypes.string,
+    password: PropTypes.string,
+    password2: PropTypes.string
+  }),
+  emailError: PropTypes.string,
+  passwordError: PropTypes.string,
+  password2Error: PropTypes.string
+};
 
 const mapStateToProps = state => {
   return {
