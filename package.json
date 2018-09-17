@@ -1,7 +1,8 @@
 {
   "name": "image-recognition",
   "sideEffects": [
-    "*.css"
+    "*.css",
+    "*.scss"
   ],
   "version": "1.0.0",
   "description": "Image recognition to detect objects and much more",

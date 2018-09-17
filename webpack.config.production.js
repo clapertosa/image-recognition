@@ -16,11 +16,7 @@ module.exports = merge.smart(commonConfig, {
           }
         }
       }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorPluginOptions: {
-          preset: ["default", { discardComments: { removeAll: true } }]
-        }
-      })
+      new OptimizeCSSAssetsPlugin({})
     ]
   }
 });
