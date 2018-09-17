@@ -14,9 +14,7 @@
 }
 
 .main-content {
-  margin-top: $mainContentMargin;
-  margin-left: $mainContentMargin;
-  margin-right: $mainContentMargin;
+  margin: $mainContentMargin;
 
   display: flex;
   justify-content: center;
