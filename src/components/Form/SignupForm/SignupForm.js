@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Typography, TextField, Button } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import { Button } from "../../../components";
 import successImage from "../../../assets/images/success.svg";
 import * as actions from "../../../store/actions/signup";
 
@@ -135,6 +137,7 @@ class SignupForm extends Component {
 
           <Button
             className={styles.button}
+            float="right"
             size="medium"
             variant="contained"
             color="primary"

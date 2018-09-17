@@ -1,5 +1,5 @@
 import React from "react";
-import { Button as MaterialButton } from "@material-ui/core";
+import { default as MaterialButton } from "@material-ui/core/Button";
 
 const Button = props => {
   const button = props.onClick ? (

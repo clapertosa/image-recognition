@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login } from "../../../store/actions/login";
-import { Typography, TextField } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 import { Button } from "../../../components";
 
 import styles from "./LoginForm.scss";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Input as MaterialInput } from "@material-ui/core";
+import { default as MaterialInput } from "@material-ui/core/Input";
 
 const Input = props => {
   const input =
@@ -8,7 +8,7 @@ const Input = props => {
     ) : (
       <MaterialInput type={props.type} />
     );
-  return <MaterialInput type={props.type} />;
+  return input;
 };
 
 export default Input;
