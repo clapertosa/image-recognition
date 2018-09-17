@@ -4,15 +4,22 @@
 
 html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
-  background-attachment: fixed;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+body {
+  height: 100%;
+  width: 100%;
 }
 
 body {
   font-family: "Roboto", sans-serif;
-  background-image: linear-gradient(
+  background: linear-gradient(
     to right top,
     #4867af,
     #0095db,
