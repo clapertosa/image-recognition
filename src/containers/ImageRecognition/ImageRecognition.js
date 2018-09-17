@@ -15,7 +15,8 @@ class ImageRecognition extends Component {
   state = {
     formData: undefined,
     imageUrl: undefined,
-    recognitionType: undefined
+    recognitionType: undefined,
+    error: null
   };
 
   setRecognitionType = buttonInfo => {
@@ -42,10 +43,19 @@ class ImageRecognition extends Component {
     e.preventDefault();
     this.props.recognitionData ? this.props.resetRecognitionData() : null;
     const image = e.target.files[0];
-    this.setState({ imageUrl: URL.createObjectURL(image) });
-    const fd = new FormData();
-    fd.append("image", image, image.name);
-    this.setState({ formData: fd });
+    if (image.type === "image/jpeg" || image.type === "image/png") {
+      this.setState({ imageUrl: URL.createObjectURL(image), error: null });
+      const fd = new FormData();
+      fd.append("image", image, image.name);
+      this.setState({ formData: fd });
+    } else {
+      this.setState({
+        formData: undefined,
+        imageUrl: undefined,
+        recognitionType: undefined,
+        error: "Only jpg or png file accepted"
+      });
+    }
   };
 
   render() {
@@ -57,6 +67,7 @@ class ImageRecognition extends Component {
         </p>
         <form encType="multipart/form-data" onSubmit={this.onSubmitHandler}>
           <input
+            accept="image/x-png,image/jpeg"
             style={{ display: "none" }}
             onChange={this.onChangeHandler}
             name="file"
@@ -74,6 +85,9 @@ class ImageRecognition extends Component {
               Select a picture
             </Button>
           </div>
+          {this.state.error ? (
+            <div style={{ color: "red" }}>{this.state.error}</div>
+          ) : null}
 
           <Button
             disabled={!this.state.imageUrl}

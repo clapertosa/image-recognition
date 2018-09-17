@@ -5,6 +5,15 @@ const axios = require("../../axiosServerInstance");
 const router = express.Router();
 
 router.post("/faces", upload.single("image"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json("No file provided");
+  } else if (
+    req.file.mimetype !== "image/png" &&
+    req.file.mimetype !== "image/jpeg"
+  ) {
+    return res.status(400).json("File type not valid");
+  }
+
   const imageFile = req.file.buffer;
   axios
     .post("/face/locate", imageFile)
@@ -13,6 +22,15 @@ router.post("/faces", upload.single("image"), (req, res) => {
 });
 
 router.post("/describe", upload.single("image"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json("No file provided");
+  } else if (
+    req.file.mimetype !== "image/png" &&
+    req.file.mimetype !== "image/jpeg"
+  ) {
+    return res.status(400).json("File type not valid");
+  }
+
   const imageFile = req.file.buffer;
   axios
     .post("/recognize/describe", imageFile)
@@ -21,6 +39,15 @@ router.post("/describe", upload.single("image"), (req, res) => {
 });
 
 router.post("/detect", upload.single("image"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json("No file provided");
+  } else if (
+    req.file.mimetype !== "image/png" &&
+    req.file.mimetype !== "image/jpeg"
+  ) {
+    return res.status(400).json("File type not valid");
+  }
+
   const imageFile = req.file.buffer;
   axios
     .post("/recognize/detect-objects", imageFile)
@@ -29,6 +56,15 @@ router.post("/detect", upload.single("image"), (req, res) => {
 });
 
 router.post("/nsfw", upload.single("image"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json("No file provided");
+  } else if (
+    req.file.mimetype !== "image/png" &&
+    req.file.mimetype !== "image/jpeg"
+  ) {
+    return res.status(400).json("File type not valid");
+  }
+
   const imageFile = req.file.buffer;
   axios
     .post("/nsfw/classify", imageFile)
