@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { login } from "../../../store/actions/login";
-import { Typography, TextField, Button } from "@material-ui/core";
+import { Typography, TextField } from "@material-ui/core";
+import { Button } from "../../../components";
 
 import styles from "./LoginForm.scss";
 
@@ -97,11 +98,11 @@ class LoginForm extends Component {
           ) : null}
 
           <Button
-            className={styles.button}
             size="medium"
             variant="contained"
             color="primary"
             type="submit"
+            float="right"
           >
             Submit
           </Button>
