@@ -19,7 +19,7 @@ module.exports = passport => {
           }
           return done(null, false);
         })
-        .catch(error => res.status(400).json(error));
+        .catch(error => error);
     })
   );
 };
