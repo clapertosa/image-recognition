@@ -10,6 +10,7 @@ const Button = props => {
       size={props.size}
       variant={props.variant}
       color={props.color}
+      style={{ float: props.float }}
     >
       {props.children}
     </MaterialButton>
@@ -20,6 +21,7 @@ const Button = props => {
       size={props.size}
       variant={props.variant}
       color={props.color}
+      style={{ float: props.float }}
     >
       {props.children}
     </MaterialButton>
