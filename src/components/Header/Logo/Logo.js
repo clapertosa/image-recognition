@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo.svg";
 
 import styles from "./Logo.scss";
@@ -6,7 +7,9 @@ import styles from "./Logo.scss";
 const Logo = () => {
   return (
     <div className={styles.logo}>
-      <img src={logo} alt="Eye logo" />
+      <NavLink to="/">
+        <img src={logo} alt="Eye logo" />
+      </NavLink>
     </div>
   );
 };
