@@ -1,6 +1,17 @@
 .box {
   position: absolute;
+  flex-wrap: wrap;
+  justify-content: center;
   border: 2px solid red;
+}
+
+.box-container {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  margin: auto;
+  height: 100%;
+  width: 100%;
 }
 
 .description {
