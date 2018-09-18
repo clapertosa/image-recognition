@@ -29,7 +29,7 @@ class Layout extends Component {
     return (
       <React.Fragment>
         <header className={styles.header}>
-          <Logo />
+          <Logo closeSideDrawer={this.sideDrawerCloseHandler} />
           <NavBar isAuthenticated={this.props.isAuthenticated} />
           <DrawerToggle
             drawerToggleClicked={this.showSideDrawerToggleHandler}

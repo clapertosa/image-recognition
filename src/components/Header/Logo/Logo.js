@@ -4,9 +4,9 @@ import logo from "../../../assets/images/logo.svg";
 
 import styles from "./Logo.scss";
 
-const Logo = () => {
+const Logo = props => {
   return (
-    <div className={styles.logo}>
+    <div onClick={props.closeSideDrawer} className={styles.logo}>
       <NavLink to="/">
         <img src={logo} alt="Eye logo" />
       </NavLink>
