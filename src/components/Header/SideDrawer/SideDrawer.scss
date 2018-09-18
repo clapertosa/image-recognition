@@ -1,4 +1,4 @@
-.sidedrawer {
+.side-drawer {
   position: fixed;
   width: 280px;
   max-width: 70%;
@@ -14,17 +14,17 @@
   }
 }
 
-.sidedrawer ul {
+.side-drawer ul {
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
-.sidedrawer li {
+.side-drawer li {
   display: block;
 }
 
-.sidedrawer li a {
+.side-drawer li a {
   padding: 0;
 }
 

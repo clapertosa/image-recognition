@@ -34,7 +34,10 @@ class Layout extends Component {
           <DrawerToggle
             drawerToggleClicked={this.showSideDrawerToggleHandler}
           />
-          <SideDrawer showSideDrawer={this.state.showSideDrawer} />
+          <SideDrawer
+            closeSideDrawer={this.sideDrawerCloseHandler}
+            showSideDrawer={this.state.showSideDrawer}
+          />
         </header>
         <Backdrop
           showBackdrop={this.state.showSideDrawer}

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavBarItems, Backdrop } from "../../../components";
+import { NavBarItems } from "../../../components";
 
 import styles from "./SideDrawer.scss";
 
@@ -8,8 +8,10 @@ const SideDrawer = props => {
 
   return (
     <React.Fragment>
-      {/*<Backdrop />*/}
-      <div className={`${styles.sidedrawer} ${visible}`}>
+      <div
+        onClick={props.closeSideDrawer}
+        className={`${styles["side-drawer"]} ${visible}`}
+      >
         <NavBarItems />
       </div>
     </React.Fragment>
