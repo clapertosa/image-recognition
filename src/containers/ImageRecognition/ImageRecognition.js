@@ -19,6 +19,10 @@ class ImageRecognition extends Component {
     error: null
   };
 
+  componentWillUnmount() {
+    this.props.resetRecognitionData();
+  }
+
   setRecognitionType = buttonInfo => {
     this.setState({ recognitionType: buttonInfo });
   };
