@@ -9,36 +9,46 @@ import {
   User,
   Logout
 } from "./components/pages/";
+import posed, { PoseGroup } from "react-pose";
 import Layout from "./hoc/Layout/Layout";
 
 class App extends Component {
   render() {
+    const RouteContainer = posed.div({
+      enter: { opacity: 1, delay: 300, beforeChildren: true },
+      exit: { opacity: 0 }
+    });
+
     let routes = (
-      <Switch>
-        <Route
-          path="/login"
-          render={() =>
-            this.props.isAuthenticated ? (
-              <Redirect to={{ pathname: "/", state: { referrer: "/" } }} />
-            ) : (
-              <Login />
-            )
-          }
-        />
-        <Route path="/signup/validate" component={Validate} />
-        <Route
-          path="/signup"
-          render={() =>
-            this.props.isAuthenticated ? (
-              <Redirect to={{ pathname: "/" }} />
-            ) : (
-              <Signup />
-            )
-          }
-        />
-        <Route path="/" exact component={Home} />
-        <Redirect to="/" />
-      </Switch>
+      <PoseGroup>
+        <RouteContainer key={this.props.location.key}>
+          <Switch location={this.props.location}>
+            <Route
+              path="/login"
+              render={() =>
+                this.props.isAuthenticated ? (
+                  <Redirect to={{ pathname: "/", state: { referrer: "/" } }} />
+                ) : (
+                  <Login />
+                )
+              }
+            />
+            <Route path="/signup/validate" component={Validate} />
+            <Route
+              path="/signup"
+              render={() =>
+                this.props.isAuthenticated ? (
+                  <Redirect to={{ pathname: "/" }} />
+                ) : (
+                  <Signup />
+                )
+              }
+            />
+            <Route path="/" exact component={Home} />
+            <Redirect to="/" />
+          </Switch>
+        </RouteContainer>
+      </PoseGroup>
     );
 
     if (this.props.isAuthenticated) {

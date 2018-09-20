@@ -146,20 +146,25 @@ class ImageRecognition extends Component {
             Check NSFW
           </Button>
         </form>
-        {this.props.recognitionData? <Caption type={this.state.recognitionType} data={this.props.recognitionData}></Caption>:null}
+        {this.props.recognitionData ? (
+          <Caption
+            type={this.state.recognitionType}
+            data={this.props.recognitionData}
+          />
+        ) : null}
         {this.state.imageUrl ? (
           <Image imageUrl={this.state.imageUrl}>
             {this.props.recognitionData &&
             this.state.recognitionType === "faces" ? (
-                <FaceBox data={this.props.recognitionData.Faces} />
+              <FaceBox data={this.props.recognitionData.Faces} />
             ) : null}
 
             {this.props.recognitionData &&
             this.state.recognitionType === "objects" ? (
-                <ObjectBox
-                  data={this.props.recognitionData.Objects}
-                  objectsNumber={this.props.recognitionData.Objects.ObjectCount}
-                />
+              <ObjectBox
+                data={this.props.recognitionData.Objects}
+                objectsNumber={this.props.recognitionData.Objects.ObjectCount}
+              />
             ) : null}
           </Image>
         ) : null}
