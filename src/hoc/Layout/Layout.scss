@@ -1,6 +1,7 @@
 @import "../../_variables.scss";
 
 .header {
+  position: fixed;
   width: 100%;
   background: black;
   color: white;
@@ -15,6 +16,7 @@
 
 .main-content {
   margin: $mainContentMargin;
+  margin-top: 4rem;
   display: flex;
   justify-content: center;
 }
