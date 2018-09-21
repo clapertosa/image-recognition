@@ -5,7 +5,12 @@ const Image = props => {
   return (
     <div className={styles["image-container"]}>
       {props.children}
-      <img id="image" src={props.imageUrl} alt="Chosen pic" />
+      <img
+        id="image"
+        className={[styles.image, styles["image-animation"]].join(" ")}
+        src={props.imageUrl}
+        alt="Chosen pic"
+      />
     </div>
   );
 };
