@@ -20,7 +20,7 @@ class ImageRecognition extends Component {
   };
 
   componentWillUnmount() {
-    this.props.resetRecognitionData();
+    this.props.recognitionData ? this.props.resetRecognitionData() : null;
   }
 
   setRecognitionType = buttonInfo => {
@@ -84,7 +84,13 @@ class ImageRecognition extends Component {
               size="large"
               color="primary"
               type="button"
-              onClick={() => this.fileInput.click()}
+              onClick={() => {
+                this.setState({ imageUrl: undefined });
+                this.props.recognitionData
+                  ? this.props.resetRecognitionData()
+                  : null;
+                this.fileInput.click();
+              }}
             >
               Select a picture
             </Button>
