@@ -8,8 +8,11 @@
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    animation: expand 400ms;
   }
+}
+
+.expand {
+  animation: expand 0.4s;
 }
 
 @keyframes expand {

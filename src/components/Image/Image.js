@@ -7,7 +7,7 @@ const Image = props => {
       {props.children}
       <img
         id="image"
-        className={[styles.image, styles["image-animation"]].join(" ")}
+        className={[styles.image, styles.expand].join(" ")}
         src={props.imageUrl}
         alt="Chosen pic"
       />
