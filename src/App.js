@@ -53,13 +53,17 @@ class App extends Component {
 
     if (this.props.isAuthenticated) {
       routes = (
-        <Switch>
-          <Route path="/user" component={User} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/signup/validate" component={Validate} />
-          <Route path="/" exact component={Home} />
-          <Redirect to="/" />
-        </Switch>
+        <PoseGroup>
+          <RouteContainer key={this.props.location.key}>
+            <Switch location={this.props.location}>
+              <Route path="/user" component={User} />
+              <Route path="/logout" component={Logout} />
+              <Route path="/signup/validate" component={Validate} />
+              <Route path="/" exact component={Home} />
+              <Redirect to="/" />
+            </Switch>
+          </RouteContainer>
+        </PoseGroup>
       );
     }
 
