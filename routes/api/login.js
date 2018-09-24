@@ -22,6 +22,10 @@ router.post("/", (req, res) => {
     .then(user => {
       if (!user[0]) {
         return res.status(401).json("Wrong email or password");
+      } else if (!user[0].activated) {
+        return res
+          .status(403)
+          .json("You need to confirm your email. Check your inbox");
       } else {
         bcrypt
           .compare(password, user[0].password.toString())
