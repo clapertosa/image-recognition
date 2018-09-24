@@ -15,6 +15,7 @@ import {
   nsfw,
   recognitionReset
 } from "../../store/actions/recognition";
+import { addRecognition } from "../../store/actions/user";
 
 import styles from "./ImageRecognition.scss";
 
@@ -38,12 +39,16 @@ class ImageRecognition extends Component {
     e.preventDefault();
     switch (this.state.recognitionType) {
       case "describe":
+        this.props.isAuthenticated ? this.props.addRecognition() : null;
         return this.props.describe(this.state.formData);
       case "faces":
+        this.props.isAuthenticated ? this.props.addRecognition() : null;
         return this.props.locateFaces(this.state.formData);
       case "objects":
+        this.props.isAuthenticated ? this.props.addRecognition() : null;
         return this.props.detectObjects(this.state.formData);
       case "nsfw":
+        this.props.isAuthenticated ? this.props.addRecognition() : null;
         return this.props.nsfwClassify(this.state.formData);
       default:
         return "No valid actions selected";
@@ -197,7 +202,8 @@ const mapStateToProps = state => {
   return {
     recognitionLoading: state.recognition.loading,
     recognitionSuccess: state.recognition.success,
-    recognitionData: state.recognition.data
+    recognitionData: state.recognition.data,
+    isAuthenticated: state.user.isAuthenticated
   };
 };
 
@@ -207,6 +213,7 @@ const mapDispatchToProps = dispatch => {
     describe: formData => dispatch(describeImage(formData)),
     detectObjects: formData => dispatch(detectObjects(formData)),
     nsfwClassify: formData => dispatch(nsfw(formData)),
+    addRecognition: () => dispatch(addRecognition()),
     resetRecognitionData: () => dispatch(recognitionReset())
   };
 };

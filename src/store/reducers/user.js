@@ -1,10 +1,12 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  email: "",
+  email: undefined,
   exp: undefined,
   isAuthenticated: false,
-  activated: false
+  activated: false,
+  recognitions: undefined,
+  error: undefined
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,14 +17,22 @@ const reducer = (state = initialState, action) => {
         email: action.payload.email,
         exp: action.payload.exp,
         isAuthenticated: true,
-        activated: action.payload.activated
+        activated: action.payload.activated,
+        recognitions: action.payload.recognitions
       };
+    case actionTypes.ADD_RECOGNITION_COMPLETED:
+      return { ...state, recognitions: action.payload };
+    case actionTypes.SET_RECOGNITIONS:
+      return { ...state, recognitions: action.payload };
+    case actionTypes.ADD_RECOGNITION_FAILED:
+      return { ...state, error: action.payload };
     case actionTypes.LOGOUT:
       return {
         ...state,
         email: "",
         exp: undefined,
-        isAuthenticated: false
+        isAuthenticated: false,
+        recognitions: undefined
       };
     default:
       return state;

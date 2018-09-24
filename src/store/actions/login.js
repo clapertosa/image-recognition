@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axiosClientInstance";
 import jwtDecode from "jwt-decode";
-import { setCurrentUser } from "./auth";
+import { setCurrentUser } from "./user";
 
 export const loginInit = () => {
   return {

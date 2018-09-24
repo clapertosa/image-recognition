@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
   const password = req.body.password;
 
   knex("users")
-    .select("id", "email", "password", "activated")
+    .select("id", "email", "password", "activated", "recognitions")
     .where("email", email)
     .then(user => {
       if (!user[0]) {
@@ -32,6 +32,7 @@ router.post("/", (req, res) => {
           .then(match => {
             if (match) {
               //USER MATCH
+              console.log(user[0]);
               const payload = {
                 id: user[0].id,
                 email: user[0].email,

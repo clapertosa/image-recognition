@@ -8,10 +8,10 @@ import {
   signupReducer,
   validateReducer,
   loginReducer,
-  authReducer,
+  userReducer,
   recognitionReducer
 } from "./store/reducers";
-import { setCurrentUser, logout } from "./store/actions/auth";
+import { setCurrentUser, logout } from "./store/actions/user";
 import { BrowserRouter } from "react-router-dom";
 import "./index.scss";
 import App from "./App";
@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
   signup: signupReducer,
   validate: validateReducer,
   login: loginReducer,
-  auth: authReducer,
+  user: userReducer,
   recognition: recognitionReducer
 });
 
