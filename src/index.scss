@@ -15,16 +15,7 @@ html {
 body {
   height: 100%;
   width: 100%;
-}
-
-body {
   font-family: "Roboto", sans-serif;
-  background: linear-gradient(
-    to right top,
-    #4867af,
-    #0095db,
-    #00bdcd,
-    #00de89,
-    #aff01e
-  );
+  color: white;
+  background: url("./assets/images/background.svg");
 }
