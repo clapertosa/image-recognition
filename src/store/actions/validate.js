@@ -8,11 +8,11 @@ export const validateInit = () => {
 };
 
 export const validate = token => {
+  console.log(token);
   return dispatch => {
     dispatch(validateInit());
-
     axios
-      .post(`/api/signup/validate${token}`)
+      .post(`/api/signup/validate/${token}`)
       .then(response => dispatch(validateCompleted(response.data)))
       .catch(error => dispatch(validateFailed(error.response.data)));
   };
