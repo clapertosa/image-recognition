@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, Image, FaceBox, ObjectBox, Caption } from "../../components";
+import {
+  Button,
+  Image,
+  FaceBox,
+  ObjectBox,
+  Caption,
+  Spinner
+} from "../../components";
 import {
   facesRecognition,
   describeImage,
@@ -80,6 +87,7 @@ class ImageRecognition extends Component {
           />
           <div className={styles["select-image-button-container"]}>
             <Button
+              disabled={this.props.recognitionLoading}
               variant="extendedFab"
               size="large"
               color="primary"
@@ -100,8 +108,8 @@ class ImageRecognition extends Component {
           ) : null}
 
           <Button
-            disabled={!this.state.imageUrl}
-            variant="outlined"
+            disabled={!this.state.imageUrl || this.props.recognitionLoading}
+            variant="contained"
             size="small"
             color="primary"
             name="describe"
@@ -114,8 +122,8 @@ class ImageRecognition extends Component {
             Get Caption
           </Button>
           <Button
-            disabled={!this.state.imageUrl}
-            variant="outlined"
+            disabled={!this.state.imageUrl || this.props.recognitionLoading}
+            variant="contained"
             size="small"
             color="primary"
             name="faces"
@@ -128,8 +136,8 @@ class ImageRecognition extends Component {
             Detect Faces
           </Button>
           <Button
-            disabled={!this.state.imageUrl}
-            variant="outlined"
+            disabled={!this.state.imageUrl || this.props.recognitionLoading}
+            variant="contained"
             size="small"
             color="primary"
             name="objects"
@@ -142,8 +150,8 @@ class ImageRecognition extends Component {
             Detect Objects
           </Button>
           <Button
-            disabled={!this.state.imageUrl}
-            variant="outlined"
+            disabled={!this.state.imageUrl || this.props.recognitionLoading}
+            variant="contained"
             size="small"
             color="primary"
             name="nsfw"
@@ -155,6 +163,8 @@ class ImageRecognition extends Component {
           >
             Check NSFW
           </Button>
+          {this.props.recognitionLoading ? <Spinner /> : null}
+          {this.props.recognitionData ? <hr /> : null}
         </form>
         {this.props.recognitionData ? (
           <Caption
@@ -185,6 +195,7 @@ class ImageRecognition extends Component {
 
 const mapStateToProps = state => {
   return {
+    recognitionLoading: state.recognition.loading,
     recognitionSuccess: state.recognition.success,
     recognitionData: state.recognition.data
   };

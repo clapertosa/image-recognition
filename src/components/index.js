@@ -19,3 +19,5 @@ export { default as Image } from "./Image/Image";
 export { default as FaceBox } from "./Boxes/FaceBox/FaceBox";
 export { default as ObjectBox } from "./Boxes/ObjectBox/ObjectBox";
 export { default as Caption } from "./Caption/Caption";
+export { default as Spinner } from "./UI/Spinner/Spinner";
+//export { default as MessageBox } from "./UI/MessageBox/MessageBox";

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import { Button } from "../../../components";
+import { Button, Spinner } from "../../../components";
 import successImage from "../../../assets/images/success.svg";
 import * as actions from "../../../store/actions/signup";
 
@@ -134,7 +134,7 @@ class SignupForm extends Component {
             error={this.state.password2Error ? true : false}
             value={this.state.user.password2}
           />
-
+          {this.props.signupLoading ? <Spinner /> : null}
           <Button
             className={styles.button}
             float="right"
@@ -157,7 +157,7 @@ class SignupForm extends Component {
           </h1>
         </div>
         <div className={styles["image-container"]}>
-          <img src={successImage} />
+          <img src={successImage} alt="Thumb up" />
         </div>
       </div>
     );
@@ -178,8 +178,9 @@ SignupForm.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    signupError: state.signup.error,
-    signupSuccess: state.signup.success
+    signupSuccess: state.signup.success,
+    signupLoading: state.signup.loading,
+    signupError: state.signup.error
   };
 };
 

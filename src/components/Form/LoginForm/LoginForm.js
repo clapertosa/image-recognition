@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { login } from "../../../store/actions/login";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import { Button } from "../../../components";
+import { Button, Spinner } from "../../../components";
 
 import styles from "./LoginForm.scss";
 
@@ -97,7 +97,7 @@ class LoginForm extends Component {
               {this.props.loginError}
             </span>
           ) : null}
-
+          {this.props.loginLoading ? <Spinner /> : null}
           <Button
             size="medium"
             variant="contained"
@@ -116,6 +116,7 @@ class LoginForm extends Component {
 const mapStateToProps = state => {
   return {
     loginSuccess: state.login.success,
+    loginLoading: state.login.loading,
     loginError: state.login.error
   };
 };
