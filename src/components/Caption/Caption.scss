@@ -1,0 +1,17 @@
+.caption {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+.enter-from-left {
+  animation: enter-from-left 1s;
+}
+
+@keyframes enter-from-left {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

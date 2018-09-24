@@ -1,10 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import styles from "./Caption.scss";
 
 const Caption = props => {
   return (
-    <div className={styles.caption}>
+    <div className={[styles.caption, styles["enter-from-left"]].join(" ")}>
       {getCaptionType(props.type, props.data)}
     </div>
   );
