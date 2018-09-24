@@ -18,10 +18,11 @@ class App extends Component {
       enter: { opacity: 1, delay: 300, beforeChildren: true },
       exit: { opacity: 0 }
     });
-
     let routes = (
       <PoseGroup>
-        <RouteContainer key={this.props.location.key}>
+        <RouteContainer
+          key={this.props.location.key || this.props.location.pathname}
+        >
           <Switch location={this.props.location}>
             <Route
               path="/login"
@@ -54,7 +55,9 @@ class App extends Component {
     if (this.props.isAuthenticated) {
       routes = (
         <PoseGroup>
-          <RouteContainer key={this.props.location.key}>
+          <RouteContainer
+            key={this.props.location.key || this.props.location.pathname}
+          >
             <Switch location={this.props.location}>
               <Route path="/user" component={User} />
               <Route path="/logout" component={Logout} />
