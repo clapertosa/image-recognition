@@ -1,6 +1,7 @@
 const merge = require("webpack-merge");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 const commonConfig = require("./webpack.config");
 
 module.exports = merge.smart(commonConfig, {
@@ -18,5 +19,6 @@ module.exports = merge.smart(commonConfig, {
       }),
       new OptimizeCSSAssetsPlugin({})
     ]
-  }
+  },
+  plugins: [new CompressionPlugin()]
 });
