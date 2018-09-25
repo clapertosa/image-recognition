@@ -8,7 +8,6 @@ export const validateInit = () => {
 };
 
 export const validate = token => {
-  console.log(token);
   return dispatch => {
     dispatch(validateInit());
     axios

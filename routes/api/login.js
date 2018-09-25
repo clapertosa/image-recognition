@@ -32,7 +32,6 @@ router.post("/", (req, res) => {
           .then(match => {
             if (match) {
               //USER MATCH
-              console.log(user[0]);
               const payload = {
                 id: user[0].id,
                 email: user[0].email,

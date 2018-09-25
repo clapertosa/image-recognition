@@ -63,7 +63,6 @@ router.post("/", (req, res) => {
             res.status(200).json("User registered");
           })
           .catch(error => {
-            console.log(error);
             res.status(400).json(error);
           });
       }
