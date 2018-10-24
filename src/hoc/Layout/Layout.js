@@ -6,7 +6,6 @@ import {
   SideDrawer,
   Backdrop
 } from "../../components";
-import { connect } from "react-redux";
 
 import styles from "./Layout.scss";
 
@@ -49,10 +48,4 @@ class Layout extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.user.isAuthenticated
-  };
-};
-
-export default connect(mapStateToProps)(Layout);
+export default Layout;
