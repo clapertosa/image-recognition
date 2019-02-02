@@ -6,6 +6,11 @@ const passport = require("passport");
 const knex = require("../../db/knex");
 const router = express.Router();
 
+//* Models
+// Face detection: a403429f2ddf4b49b307e318f00e528b
+// Objects, general: aaa03c23b3724a16a56b629203edc62c
+// NSFW: e9576d86d2004ed1a38ba0cf39ecb4b1
+
 router.post("/faces", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res.status(400).json("No file provided");
@@ -16,26 +21,20 @@ router.post("/faces", upload.single("image"), (req, res) => {
     return res.status(400).json("File type not valid");
   }
 
-  const imageFile = req.file.buffer;
-  axios
-    .post("/face/locate", imageFile)
-    .then(response => res.status(200).json(response.data))
-    .catch(error => res.status(400).json(error.response.data));
-});
+  const imageFile = req.file.buffer.toString("base64");
 
-router.post("/describe", upload.single("image"), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json("No file provided");
-  } else if (
-    req.file.mimetype !== "image/png" &&
-    req.file.mimetype !== "image/jpeg"
-  ) {
-    return res.status(400).json("File type not valid");
-  }
-
-  const imageFile = req.file.buffer;
   axios
-    .post("/recognize/describe", imageFile)
+    .post("/a403429f2ddf4b49b307e318f00e528b/outputs", {
+      inputs: [
+        {
+          data: {
+            image: {
+              base64: imageFile
+            }
+          }
+        }
+      ]
+    })
     .then(response => res.status(200).json(response.data))
     .catch(error => res.status(400).json(error.response.data));
 });
@@ -50,9 +49,19 @@ router.post("/detect", upload.single("image"), (req, res) => {
     return res.status(400).json("File type not valid");
   }
 
-  const imageFile = req.file.buffer;
+  const imageFile = req.file.buffer.toString("base64");
   axios
-    .post("/recognize/detect-objects", imageFile)
+    .post("/aaa03c23b3724a16a56b629203edc62c/outputs", {
+      inputs: [
+        {
+          data: {
+            image: {
+              base64: imageFile
+            }
+          }
+        }
+      ]
+    })
     .then(response => res.status(200).json(response.data))
     .catch(error => res.status(400).json(error.response.data));
 });
@@ -67,9 +76,19 @@ router.post("/nsfw", upload.single("image"), (req, res) => {
     return res.status(400).json("File type not valid");
   }
 
-  const imageFile = req.file.buffer;
+  const imageFile = req.file.buffer.toString("base64");
   axios
-    .post("/nsfw/classify", imageFile)
+    .post("/e9576d86d2004ed1a38ba0cf39ecb4b1/outputs", {
+      inputs: [
+        {
+          data: {
+            image: {
+              base64: imageFile
+            }
+          }
+        }
+      ]
+    })
     .then(response => res.status(200).json(response.data))
     .catch(error => res.status(400).json(error.response.data));
 });

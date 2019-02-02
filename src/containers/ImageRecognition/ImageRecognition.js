@@ -4,7 +4,7 @@ import {
   Button,
   Image,
   FaceBox,
-  ObjectBox,
+  Objects,
   Caption,
   Spinner
 } from "../../components";
@@ -78,8 +78,7 @@ class ImageRecognition extends Component {
     return (
       <div className={styles.container}>
         <p className={styles.description}>
-          Submit an image to get a caption, find all faces, check NSFW or find
-          objects.
+          Submit an image to find all faces, objects or check NSFW.
         </p>
         <form encType="multipart/form-data" onSubmit={this.onSubmitHandler}>
           <input
@@ -112,20 +111,6 @@ class ImageRecognition extends Component {
             <div style={{ color: "red" }}>{this.state.error}</div>
           ) : null}
 
-          <Button
-            disabled={!this.state.imageUrl || this.props.recognitionLoading}
-            variant="contained"
-            size="small"
-            color="primary"
-            name="describe"
-            type="submit"
-            onClick={() => {
-              this.props.resetRecognitionData();
-              this.setRecognitionType("describe");
-            }}
-          >
-            Get Caption
-          </Button>
           <Button
             disabled={!this.state.imageUrl || this.props.recognitionLoading}
             variant="contained"
@@ -173,25 +158,33 @@ class ImageRecognition extends Component {
         </form>
         {this.props.recognitionData ? (
           <Caption
+            animate={this.state.recognitionType !== "objects"}
             type={this.state.recognitionType}
             data={this.props.recognitionData}
           />
         ) : null}
         {this.state.imageUrl ? (
-          <Image imageUrl={this.state.imageUrl}>
+          <>
             {this.props.recognitionData &&
-            this.state.recognitionType === "faces" ? (
-              <FaceBox data={this.props.recognitionData.Faces} />
-            ) : null}
-
-            {this.props.recognitionData &&
+            this.props.recognitionData.outputs[0].data.concepts &&
             this.state.recognitionType === "objects" ? (
-              <ObjectBox
-                data={this.props.recognitionData.Objects}
-                objectsNumber={this.props.recognitionData.Objects.ObjectCount}
+              <Objects
+                data={this.props.recognitionData.outputs[0].data.concepts}
+                objectsNumber={
+                  this.props.recognitionData.outputs[0].data.concepts.length
+                }
               />
             ) : null}
-          </Image>
+            <Image imageUrl={this.state.imageUrl}>
+              {this.props.recognitionData &&
+              this.props.recognitionData.outputs[0].data.regions &&
+              this.state.recognitionType === "faces" ? (
+                <FaceBox
+                  data={this.props.recognitionData.outputs[0].data.regions}
+                />
+              ) : null}
+            </Image>
+          </>
         ) : null}
       </div>
     );

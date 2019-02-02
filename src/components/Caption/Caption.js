@@ -3,7 +3,12 @@ import styles from "./Caption.scss";
 
 const Caption = props => {
   return (
-    <div className={[styles.caption, styles["enter-from-left"]].join(" ")}>
+    <div
+      className={[
+        styles.caption,
+        props.animate ? styles["enter-from-left"] : ""
+      ].join(" ")}
+    >
       {getCaptionType(props.type, props.data)}
     </div>
   );
@@ -11,42 +16,45 @@ const Caption = props => {
 
 const getCaptionType = (type, data) => {
   switch (type) {
-    case "describe":
-      return data.BestOutcome.Description;
     case "faces":
-      return `Faces detected: ${data.FaceCount}`;
+      return `Faces detected: ${
+        data.outputs[0].data.regions ? data.outputs[0].data.regions.length : 0
+      }`;
     case "objects":
-      return `Objects detected: ${data.ObjectCount}`;
+      return (
+        <span>
+          Legend: <span style={{ color: "#38f238" }}>certain</span> -{" "}
+          <span style={{ color: "#cece25" }}>probable</span> -{" "}
+          <span style={{ color: "silver" }}>uncertain</span>
+        </span>
+      );
     case "nsfw":
-      return classifyNsfw(data.Score);
+      return classifyNsfw(
+        data.outputs[0].data.concepts[0].value -
+          data.outputs[0].data.concepts[1].value
+      );
     default:
       return data;
   }
 };
 
 const classifyNsfw = score => {
-  if (score >= 0.0 && score <= 0.2) {
+  if (score > 0.7) {
     return (
       <div>
-        NSFW Classification: <span style={{ color: "green" }}>safe</span>
+        NSFW Classification: <span style={{ color: "#38f238" }}>safe</span>
       </div>
     );
-  } else if (score >= 0.8 && score <= 1.0) {
+  } else if (score <= 0.7 && score > 0.5) {
     return (
       <div>
-        NSFW Classification: <span style={{ color: "red" }}>unsafe</span>
-      </div>
-    );
-  } else if (score >= 0.2 && score <= 0.8) {
-    return (
-      <div>
-        NSFW Classification: <span style={{ color: "red" }}>racist</span>
+        NSFW Classification: <span style={{ color: "#cece25" }}>moderate</span>
       </div>
     );
   } else {
     return (
       <div>
-        NSFW Classification: <span style={{ color: "yellow" }}>moderate</span>
+        NSFW Classification: <span style={{ color: "red" }}>unsafe</span>
       </div>
     );
   }
