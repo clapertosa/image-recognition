@@ -2,8 +2,9 @@ import React from "react";
 import styles from "../Box.scss";
 
 const FaceBox = props => {
-  return props.data.map((faceCoords, index) => {
-    let coords = calculateBoxPosition(faceCoords);
+  return props.data.map(({ region_info }, index) => {
+    let coords = calculateBoxPosition(region_info.bounding_box);
+
     return (
       <div key={index} className={styles["box-container"]}>
         <div
@@ -20,16 +21,16 @@ const FaceBox = props => {
   });
 };
 
-const calculateBoxPosition = faceCoords => {
+const calculateBoxPosition = coords => {
   const image = document.getElementById("image");
   const width = image.naturalWidth;
   const height = image.naturalHeight;
 
   return {
-    left: (faceCoords.LeftX / width) * 100,
-    top: (faceCoords.TopY / height) * 100,
-    right: ((width - faceCoords.RightX) / width) * 100,
-    bottom: ((height - faceCoords.BottomY) / height) * 100
+    left: coords.left_col * 100,
+    top: coords.top_row * 100,
+    right: ((width - coords.right_col * width) * 100) / width,
+    bottom: ((height - coords.bottom_row * height) * 100) / height
   };
 };
 
